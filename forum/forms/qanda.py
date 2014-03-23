@@ -358,6 +358,7 @@ class SubscriptionSettingsForm(forms.ModelForm):
 
 class UserPreferencesForm(forms.Form):
     sticky_sorts = forms.BooleanField(required=False, initial=False)
+    dogecoin_address = forms.CharField(required=False,initial="")
 
 
 

@@ -5,9 +5,29 @@
         <strong>{% diff_date node.added_at %}</strong>
     </p>
     {% gravatar node.author 32 %}
-    <p><a {% if node.author.is_suspended %}class="suspended-user" {% endif %}href="{{ node.author.get_profile_url }}">{{ node.author.decorated_name }}</a><br/>
+    <p><a {% if node.author.is_suspended %}class="suspended-user" {% endif %}href="{{ node.author.get_profile_url }}">{{ node.author.decorated_name }}</a>
+
+
+    <br/>
     {% get_score_badge node.author %}<br />
-    {% get_accept_rate node.author %}</p>
+    {% get_accept_rate node.author %}
+    <br/>
+    {% if node.author.prop.preferences.dogecoin_address != "" and node.author.prop.preferences.dogecoin_address != None %}
+              <script>
+DogetsCom.go({
+ wallet_address: "{{node.author.prop.preferences.dogecoin_address}}",
+ currency: "dogecoin",
+ counter: "count",
+ alignment: "bl",
+ qrcode: true,
+ auto_show: false,
+ lbl_button: "Donate Dogecoin",
+ lbl_address: "Donate Dogecoin to this Address:",
+ lbl_count: "donations",
+ lbl_amount: "DOGE"});
+</script>
+                    
+                {% endif %}</p>
 </div>
 {% if node.last_edited %}
     <div class='post-update-info post-update-info-edited'>

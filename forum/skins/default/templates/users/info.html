@@ -6,6 +6,7 @@
 {% load i18n %}
 {% load user_tags %}
 
+
 <div id="subheader" class="headUser{% if view_user.is_suspended %} suspended-user{% endif %}">
     {{view_user.decorated_name}}
 </div>
@@ -100,7 +101,25 @@
                     </td>
                 </tr>
                 {% endif %}
-
+                {% if view_user.prop.preferences.dogecoin_address != "" and view_user.prop.preferences.dogecoin_address != None %}
+                 <tr>
+                    <td colspan="2" style="text-align:right">
+                        Donate to this user: <script>
+DogetsCom.go({
+ wallet_address: "{{view_user.prop.preferences.dogecoin_address}}",
+ currency: "dogecoin",
+ counter: "count",
+ alignment: "bl",
+ qrcode: true,
+ auto_show: false,
+ lbl_button: "Donate Dogecoin",
+ lbl_address: "Donate Dogecoin to this Address:",
+ lbl_count: "donations",
+ lbl_amount: "DOGE"});
+</script>
+                    </td>
+                </tr>
+                {% endif %}
                 <tr>
                     <td colspan="2" style="text-align:right">
                         <a href="{% url "user_report" user.pk %}" class="ajax-command withprompt">

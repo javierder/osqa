@@ -21,6 +21,10 @@
                 <td>{{ form.sticky_sorts }}</td>
                 <td>{% trans "Always remember the sort order I apply to the lists I view" %}</td>
             </tr>
+                        <tr>
+                <td>{{ form.dogecoin_address }}</td>
+                <td>{% trans "Show Dogecoin donation widget with this address" %}</td>
+            </tr>
         </table>
         <div class="submit-row">
             <input type="submit" class="submit" name="save" value="{% trans "Save" %}"/>
